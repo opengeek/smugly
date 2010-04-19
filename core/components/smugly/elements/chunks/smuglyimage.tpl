@@ -1,0 +1,1 @@
+<img src="[[+ThumbURL]]" alt="[[+Caption:default=`[[+id]]`]]" />
