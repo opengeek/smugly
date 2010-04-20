@@ -26,7 +26,6 @@
  */
 if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties) 
     || !($modx->smugly instanceof Smugly)
-    || !($modx->smugly->login($scriptProperties))
 ) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'SmuglyImages: Could not load smugly service.');
     return '';

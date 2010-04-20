@@ -67,6 +67,8 @@ class Smugly {
         if ($this->getOption('debug')) {
             $this->startTime = $this->modx->getMicroTime();
         }
+        
+        $this->login();
     }
 
     /**
@@ -211,7 +213,7 @@ class Smugly {
                 if (!empty($response)) $fromCache = true;
             }
             if (!$fromCache) {
-                $response = file_get_contents($url);
+                $response = $this->_call($url);
                 if (!empty($response) && $this->getCache($parameters)) {
                     $this->cache->set($this->namespace . '/' . md5($url), $response, $this->getOption('cache_expires', $parameters));
                 }
@@ -226,9 +228,28 @@ class Smugly {
     public function & getCache(array $options = array()) {
         if ($this->cache === null) {
             if ($this->getOption('cache_request', $options, true) && $this->modx->getCacheManager()) {
-                $this->cache = $this->modx->cacheManager->getCacheProvider($this->namespace, array_merge($this->options, $options));
+                $this->cache = $this->modx->cacheManager->getCacheProvider($this->namespace);
             }
         }
         return $this->cache;
+    }
+    
+    protected function _call($url) {
+        $content = '';
+        if (function_exists('curl_init')) {
+            $service = curl_init();
+            curl_setopt($service, CURLOPT_URL, $url);
+            curl_setopt($service, CURLOPT_HEADER, 0);
+            curl_setopt($service, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($service, CURLOPT_FOLLOWLOCATION, 1);
+            $content = trim(curl_exec($service));
+            curl_close($service);
+        } else {
+            $service = fopen($url, 'rb');
+            if ($service) {
+                while (!feof($service)) $content .= fread($service, 8192);
+            }
+        }
+        return $content;
     }
 }

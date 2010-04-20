@@ -26,18 +26,14 @@
  */
 if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties) 
     || !($modx->smugly instanceof Smugly)
-    || !($modx->smugly->login($scriptProperties))
 ) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'SmuglyImage: Could not load smugly service.');
     return '';
 }
 
 /* setup default properties */
-$prefix = isset($prefix) ? $prefix : 'Image';
-$ImageID = $modx->smugly->getOption('ImageID', $_REQUEST, $modx->smugly->getOption('ImageID', $scriptProperties));
-$ImageKey = $modx->smugly->getOption('ImageKey', $_REQUEST, $modx->smugly->getOption('ImageKey', $scriptProperties));
-
-$output = array();
+$ImageID = $modx->smugly->getOption('ImageID', $scriptProperties, $modx->smugly->getOption('ImageID', $_REQUEST));
+$ImageKey = $modx->smugly->getOption('ImageKey', $scriptProperties, $modx->smugly->getOption('ImageKey', $_REQUEST));
 
 $image = $modx->smugly->getImageInfo(array_merge(
     $scriptProperties
@@ -46,6 +42,5 @@ $image = $modx->smugly->getImageInfo(array_merge(
         ,'ImageKey' => $ImageKey
     )
 ));
-$modx->toPlaceholders($image, $prefix);
 
-return '';
+return $modx->getChunk($tpl, array_merge($scriptProperties, $image));

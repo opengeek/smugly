@@ -26,15 +26,14 @@
  */
 if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties) 
     || !($modx->smugly instanceof Smugly)
-    || !($modx->smugly->login($scriptProperties))
 ) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'SmuglyAlbum: Could not load smugly service.');
     return '';
 }
 
 /* setup default properties */
-$AlbumID = $modx->smugly->getOption('AlbumID', $_REQUEST, $modx->smugly->getOption('AlbumID', $scriptProperties));
-$AlbumKey = $modx->smugly->getOption('AlbumKey', $_REQUEST, $modx->smugly->getOption('AlbumKey', $scriptProperties));
+$AlbumID = $modx->smugly->getOption('AlbumID', $scriptProperties, $modx->smugly->getOption('AlbumID', $_REQUEST));
+$AlbumKey = $modx->smugly->getOption('AlbumKey', $scriptProperties, $modx->smugly->getOption('AlbumKey', $_REQUEST));
 
 $output = array();
 
