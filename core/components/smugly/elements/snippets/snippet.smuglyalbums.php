@@ -2,7 +2,7 @@
 /**
  * SmuglyAlbums
  *
- * Copyright 2010 by Jason Coward <modx@opengeek.com>
+ * Copyright 2010-2011 by Jason Coward <jason@modx.com>
  *
  * Smugly is free software; you can redistribute it and/or modify it under the
  * terms of the GNU General Public License as published by the Free Software
