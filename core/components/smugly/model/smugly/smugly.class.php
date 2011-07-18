@@ -55,7 +55,7 @@ class Smugly {
                 ,'cache_expires' => 86400
                 ,'cache_path' => $this->modx->getCachePath()
 
-                ,'APIEndpoint' => 'http://api.smugmug.com/hack/json/1.2.0'
+                ,'APIEndpoint' => 'http://api.smugmug.com/services/api/json/1.2.2/'
                 ,'APIKey' => 'RIAiI7A2V5LusZHJmAHWbcg69stcVPyu'
                 ,'APISecret' => 'ef782678a86cc64777d22a79c5142901'
                 ,'SessionID' => ''

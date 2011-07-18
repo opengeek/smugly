@@ -24,7 +24,9 @@
  *
  * @package smugly
  */
-if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties) 
+/** @var $modx modX */
+/** @var $scriptProperties array */
+if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties)
     || !($modx->smugly instanceof Smugly)
 ) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'SmuglyAlbums: Could not load smugly service.');
@@ -57,7 +59,7 @@ if (!empty($filter)) {
 }
 
 if (!empty($sortby) && isset($albums[0][$sortby])) {
-    usort($albums, function($a, $b) {
+    usort($albums, function($a, $b) use ($sortby) {
         if ($a[$sortby] == $b[$sortby]) return 0;
         return ($a[$sortby] < $b[$sortby]) ? -1 : 1;
     });

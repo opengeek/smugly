@@ -20,21 +20,19 @@
  * @package smugly
  */
 /**
- * Properties for the Smugly snippet.
+ * Properties for the SmuglyAlbum snippet.
  *
  * @package smugly
  * @subpackage build
  */
 $properties = array(
-/*
     array(
-        'name' => '',
-        'desc' => '',
+        'name' => 'tpl',
+        'desc' => 'Name of a chunk serving as a template for rendering the album data.',
         'type' => 'textfield',
         'options' => '',
         'value' => '',
     ),
-*/
 );
 
 return $properties;

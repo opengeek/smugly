@@ -33,7 +33,7 @@ set_time_limit(0);
 
 define('PKG_NAME','Smugly');
 define('PKG_NAME_LOWER','smugly');
-define('PKG_VERSION','0.1.0');
+define('PKG_VERSION','1.0.0');
 define('PKG_RELEASE','beta');
 
 /* override with your own defines here (see build.config.sample.php) */
@@ -156,6 +156,7 @@ $modx->log(modX::LOG_LEVEL_INFO,'Adding package attributes and setup options...'
 $builder->setPackageAttributes(array(
     'license' => file_get_contents($sources['docs'] . 'LICENSE'),
     'readme' => file_get_contents($sources['docs'] . 'README'),
+    'changelog' => file_get_contents($sources['docs'] . 'CHANGELOG'),
     //'setup-options' => array(
         //'source' => $sources['build'].'setup.options.php',
     //),

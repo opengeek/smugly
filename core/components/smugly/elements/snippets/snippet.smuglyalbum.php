@@ -24,7 +24,9 @@
  *
  * @package smugly
  */
-if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties) 
+/** @var $modx modX */
+/** @var $scriptProperties array */
+if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties)
     || !($modx->smugly instanceof Smugly)
 ) {
     $modx->log(modX::LOG_LEVEL_ERROR, 'SmuglyAlbum: Could not load smugly service.');

@@ -20,27 +20,19 @@
  * @package smugly
  */
 /**
+ * Properties for the SmuglyImage snippet.
+ *
  * @package smugly
  * @subpackage build
  */
-$chunks = array();
+$properties = array(
+    array(
+        'name' => 'tpl',
+        'desc' => 'Name of a chunk serving as a template for rendering the image data.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+);
 
-$chunks[0]= $modx->newObject('modChunk');
-$chunks[0]->fromArray(array(
-    'id' => 0,
-    'name' => 'SmuglyAlbum',
-    'description' => '',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/smuglyalbum.tpl'),
-    'properties' => '',
-),'',true,true);
-
-$chunks[1]= $modx->newObject('modChunk');
-$chunks[1]->fromArray(array(
-    'id' => 0,
-    'name' => 'SmuglyImage',
-    'description' => '',
-    'snippet' => file_get_contents($sources['source_core'].'/elements/chunks/smuglyimage.tpl'),
-    'properties' => '',
-),'',true,true);
-
-return $chunks;
+return $properties;

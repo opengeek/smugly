@@ -24,6 +24,8 @@
  *
  * @package smugly
  */
+/** @var $modx modX */
+/** @var $scriptProperties array */
 if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_path', $scriptProperties, $modx->getOption('core_path') . 'components/smugly/') . 'model/', $scriptProperties) 
     || !($modx->smugly instanceof Smugly)
 ) {
@@ -66,7 +68,7 @@ if (!empty($filter)) {
 }
 
 if (!empty($sortby) && isset($images[0][$sortby])) {
-    usort($images, function($a, $b) {
+    usort($images, function($a, $b) use ($sortby) {
         if ($a[$sortby] == $b[$sortby]) return 0;
         return ($a[$sortby] < $b[$sortby]) ? -1 : 1;
     });
