@@ -122,10 +122,6 @@ $attr = array(
 $vehicle = $builder->createVehicle($category,$attr);
 
 $modx->log(modX::LOG_LEVEL_INFO,'Adding file resolvers to category...');
-//$vehicle->resolve('file',array(
-//    'source' => $sources['source_assets'],
-//    'target' => "return MODX_ASSETS_PATH . 'components/';",
-//));
 $vehicle->resolve('file',array(
     'source' => $sources['source_core'],
     'target' => "return MODX_CORE_PATH . 'components/';",
@@ -146,10 +142,6 @@ foreach ($settings as $setting) {
     $builder->putVehicle($vehicle);
 }
 unset($settings,$setting,$attributes);
-
-/* load lexicon strings */
-//$modx->log(modX::LOG_LEVEL_INFO,'Packaging in lexicon...');
-//$builder->buildLexicon($sources['lexicon']);
 
 /* now pack in the license file, readme and setup options */
 $modx->log(modX::LOG_LEVEL_INFO,'Adding package attributes and setup options...');

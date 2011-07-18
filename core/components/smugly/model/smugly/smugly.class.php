@@ -51,9 +51,9 @@ class Smugly {
 
                 ,'debug' => false
                 
-                ,'cache_request' => true
+                ,'cache_request' => false
                 ,'cache_expires' => 86400
-                ,'cache_path' => $this->modx->getCachePath()
+                ,'cache_key' => $this->namespace
 
                 ,'APIEndpoint' => 'http://api.smugmug.com/services/api/json/1.2.2/'
                 ,'APIKey' => 'RIAiI7A2V5LusZHJmAHWbcg69stcVPyu'
@@ -191,7 +191,6 @@ class Smugly {
                 );
                 break;
         }
-        // $reqParams['cache_request'] = false;
         $response = $this->request($reqParams);
         if (!empty($response) && isset($response['Login']) && isset($response['Login']['Session']) && isset($response['Login']['Session']['id'])) {
             $session_id = $response['Login']['Session']['id'];
@@ -215,7 +214,7 @@ class Smugly {
             if (!$fromCache) {
                 $response = $this->_call($url);
                 if (!empty($response) && $this->getCache($parameters)) {
-                    $this->cache->set($this->namespace . '/' . md5($url), $response, $this->getOption('cache_expires', $parameters));
+                    $this->cache->set($this->namespace . '/' . md5($url), $response, $this->getOption(xPDO::OPT_CACHE_EXPIRES, $parameters, $this->modx->getOption(xPDO::OPT_CACHE_EXPIRES, null, 0)));
                 }
             }
             if (!empty($response)) {
@@ -228,7 +227,11 @@ class Smugly {
     public function & getCache(array $options = array()) {
         if ($this->cache === null) {
             if ($this->getOption('cache_request', $options, true) && $this->modx->getCacheManager()) {
-                $this->cache = $this->modx->cacheManager->getCacheProvider($this->namespace);
+                $cacheOptions = array(
+                    xPDO::OPT_CACHE_HANDLER => $this->getOption(xPDO::OPT_CACHE_HANDLER, $options, $this->modx->getOption(xPDO::OPT_CACHE_HANDLER, null, 'xPDOFileCache')),
+                    xPDO::OPT_CACHE_FORMAT => (integer) $this->getOption(xPDO::OPT_CACHE_FORMAT, $options, $this->modx->getOption(xPDO::OPT_CACHE_FORMAT, null, xPDOCacheManager::CACHE_PHP)),
+                );
+                $this->cache = $this->modx->cacheManager->getCacheProvider($this->getOption(xPDO::OPT_CACHE_KEY, $options, $this->namespace), $cacheOptions);
             }
         }
         return $this->cache;

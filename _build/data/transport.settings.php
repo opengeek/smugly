@@ -27,15 +27,40 @@
  */
 $settings = array();
 
-/*
-$settings['smugly.']= $modx->newObject('modSystemSetting');
-$settings['smugly.']->fromArray(array(
-    'key' => 'smugly.',
-    'value' => '',
+$settings['smugly.cache_request']= $modx->newObject('modSystemSetting');
+$settings['smugly.cache_request']->fromArray(array(
+    'key' => 'smugly.cache_request',
+    'value' => false,
+    'xtype' => 'combo-boolean',
+    'namespace' => 'smugly',
+    'area' => 'caching',
+),'',true,true);
+
+$settings['smugly.cache_expires']= $modx->newObject('modSystemSetting');
+$settings['smugly.cache_expires']->fromArray(array(
+    'key' => 'smugly.cache_expires',
+    'value' => '86400',
     'xtype' => 'textfield',
     'namespace' => 'smugly',
-    'area' => '',
+    'area' => 'caching',
 ),'',true,true);
-*/
+
+$settings['smugly.cache_key']= $modx->newObject('modSystemSetting');
+$settings['smugly.cache_key']->fromArray(array(
+    'key' => 'smugly.cache_key',
+    'value' => 'resource',
+    'xtype' => 'textfield',
+    'namespace' => 'smugly',
+    'area' => 'caching',
+),'',true,true);
+
+$settings['smugly.login']= $modx->newObject('modSystemSetting');
+$settings['smugly.login']->fromArray(array(
+    'key' => 'smugly.login',
+    'value' => 'anonymously',
+    'xtype' => 'textfield',
+    'namespace' => 'smugly',
+    'area' => 'authentication',
+),'',true,true);
 
 return $settings;
