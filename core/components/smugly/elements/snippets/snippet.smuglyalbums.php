@@ -22,6 +22,8 @@
 /**
  * A snippet to iterate a user's SmugMug Albums.
  *
+ * This snippet is compatible with getPage for paging results.
+ *
  * @package smugly
  */
 /** @var $modx modX */

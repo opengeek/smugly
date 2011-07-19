@@ -20,7 +20,7 @@
  * @package smugly
  */
 /**
- * A snippet to retrieve information about a SmugMug Album.
+ * A snippet to retrieve SmugMug Album data and set as placeholders.
  *
  * @package smugly
  */
@@ -34,18 +34,22 @@ if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_
 }
 
 /* setup default properties */
-$AlbumID = $modx->smugly->getOption('AlbumID', $scriptProperties, $modx->smugly->getOption('AlbumID', $_REQUEST));
-$AlbumKey = $modx->smugly->getOption('AlbumKey', $scriptProperties, $modx->smugly->getOption('AlbumKey', $_REQUEST));
+$AlbumID = $modx->smugly->getOption('AlbumID', $scriptProperties);
+$AlbumKey = $modx->smugly->getOption('AlbumKey', $scriptProperties);
 
 $output = array();
 
-$album = $modx->smugly->getAlbumInfo(array_merge(
-    $scriptProperties
-    ,array(
-        'AlbumID' => $AlbumID
-        ,'AlbumKey' => $AlbumKey
-    )
-));
-$modx->toPlaceholders($album, 'Album');
+if (!empty($AlbumKey) && !empty($AlbumID)) {
+    $album = $modx->smugly->getAlbumInfo(array_merge(
+        $scriptProperties
+        ,array(
+            'AlbumID' => $AlbumID
+            ,'AlbumKey' => $AlbumKey
+        )
+    ));
+    $modx->toPlaceholders($album, 'Album');
+} elseif ($modx->smugly->getOption('debug', $scriptProperties, false)) {
+    $modx->log(modX::LOG_LEVEL_ERROR, "An empty AlbumID or AlbumKey was provided.", 'HTML', 'SmuglyAlbum', __FILE__, __LINE__);
+}
 
 return '';

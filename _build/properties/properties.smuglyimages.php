@@ -28,7 +28,21 @@
 $properties = array(
     array(
         'name' => 'tpl',
-        'desc' => 'Name of a chunk serving as a template for each image.',
+        'desc' => 'Name of a Chunk serving as a tpl for each image.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+    array(
+        'name' => 'AlbumID',
+        'desc' => 'A valid SmugMug AlbumID.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+    array(
+        'name' => 'AlbumKey',
+        'desc' => 'A valid SmugMug AlbumKey.',
         'type' => 'textfield',
         'options' => '',
         'value' => '',
@@ -76,5 +90,4 @@ $properties = array(
         'value' => 'total',
     ),
 );
-
 return $properties;

@@ -22,6 +22,8 @@
 /**
  * A snippet to iterate images from a SmugMug Album.
  *
+ * This snippet is compatible with getPage for paging results.
+ *
  * @package smugly
  */
 /** @var $modx modX */
@@ -83,7 +85,7 @@ foreach ($images as $image) {
         if ($offset > 0 && $idx < $offset) continue;
         if ($cnt >= $limit) break;
     }
-    $output[] = $modx->getChunk($tpl, $image);
+    $output[] = $modx->getChunk($tpl, array_merge($scriptProperties, $image));
     $cnt++;
 }
 

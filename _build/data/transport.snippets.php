@@ -28,7 +28,7 @@ $snippets = array();
 $snippets[0]= $modx->newObject('modSnippet');
 $snippets[0]->fromArray(array(
     'name' => 'SmuglyAlbum',
-    'description' => '',
+    'description' => 'Set placeholders for a specific SmugMug Album.',
     'snippet' => file_get_contents($sources['source_core'].'/elements/snippets/snippet.smuglyalbum.php'),
 ));
 $properties = include $sources['build'].'properties/properties.smuglyalbum.php';
@@ -38,7 +38,7 @@ unset($properties);
 $snippets[1]= $modx->newObject('modSnippet');
 $snippets[1]->fromArray(array(
     'name' => 'SmuglyAlbums',
-    'description' => '',
+    'description' => 'Iterate a collection of SmugMug Albums; getPage compatible.',
     'snippet' => file_get_contents($sources['source_core'].'/elements/snippets/snippet.smuglyalbums.php'),
 ));
 $properties = include $sources['build'].'properties/properties.smuglyalbums.php';
@@ -48,7 +48,7 @@ unset($properties);
 $snippets[2]= $modx->newObject('modSnippet');
 $snippets[2]->fromArray(array(
     'name' => 'SmuglyImage',
-    'description' => '',
+    'description' => 'Render data for a SmugMug Image using a Chunk tpl.',
     'snippet' => file_get_contents($sources['source_core'].'/elements/snippets/snippet.smuglyimage.php'),
 ));
 $properties = include $sources['build'].'properties/properties.smuglyimage.php';
@@ -58,7 +58,7 @@ unset($properties);
 $snippets[3]= $modx->newObject('modSnippet');
 $snippets[3]->fromArray(array(
     'name' => 'SmuglyImages',
-    'description' => '',
+    'description' => 'Iterate an Album of SmugMug Images; getPage compatible.',
     'snippet' => file_get_contents($sources['source_core'].'/elements/snippets/snippet.smuglyimages.php'),
 ));
 $properties = include $sources['build'].'properties/properties.smuglyimages.php';

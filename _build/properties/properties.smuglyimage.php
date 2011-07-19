@@ -28,11 +28,24 @@
 $properties = array(
     array(
         'name' => 'tpl',
-        'desc' => 'Name of a chunk serving as a template for rendering the image data.',
+        'desc' => 'Name of a Chunk serving as a tpl for rendering the image data.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+    array(
+        'name' => 'ImageID',
+        'desc' => 'A valid SmugMug ImageID.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+    array(
+        'name' => 'ImageKey',
+        'desc' => 'A valid SmugMug ImageKey.',
         'type' => 'textfield',
         'options' => '',
         'value' => '',
     ),
 );
-
 return $properties;

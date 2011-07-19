@@ -34,15 +34,19 @@ if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_
 }
 
 /* setup default properties */
-$ImageID = $modx->smugly->getOption('ImageID', $scriptProperties, $modx->smugly->getOption('ImageID', $_REQUEST));
-$ImageKey = $modx->smugly->getOption('ImageKey', $scriptProperties, $modx->smugly->getOption('ImageKey', $_REQUEST));
+$ImageID = $modx->smugly->getOption('ImageID', $scriptProperties);
+$ImageKey = $modx->smugly->getOption('ImageKey', $scriptProperties);
 
-$image = $modx->smugly->getImageInfo(array_merge(
-    $scriptProperties
-    ,array(
-        'ImageID' => $ImageID
-        ,'ImageKey' => $ImageKey
-    )
-));
-
-return $modx->getChunk($tpl, array_merge($scriptProperties, $image));
+$image = $scriptProperties;
+if (!empty($ImageID) && !empty($ImageKey)) {
+    $image = $modx->smugly->getImageInfo(array_merge(
+        $image
+        ,array(
+            'ImageID' => $ImageID
+            ,'ImageKey' => $ImageKey
+        )
+    ));
+} elseif ($modx->smugly->getOption('debug', $scriptProperties, false)) {
+    $modx->log(modX::LOG_LEVEL_ERROR, "An empty ImageID or ImageKey was provided.", 'HTML', 'SmuglyImage', __FILE__, __LINE__);
+}
+return $modx->getChunk($tpl, $image);

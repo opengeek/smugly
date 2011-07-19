@@ -28,7 +28,14 @@
 $properties = array(
     array(
         'name' => 'tpl',
-        'desc' => 'Name of a chunk serving as a template for each album.',
+        'desc' => 'Name of a Chunk serving as a tpl for rendering each album.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+    array(
+        'name' => 'NickName',
+        'desc' => 'The account nickname to retrieve the albums from.',
         'type' => 'textfield',
         'options' => '',
         'value' => '',

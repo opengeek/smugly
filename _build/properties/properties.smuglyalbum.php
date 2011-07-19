@@ -27,12 +27,18 @@
  */
 $properties = array(
     array(
-        'name' => 'tpl',
-        'desc' => 'Name of a chunk serving as a template for rendering the album data.',
+        'name' => 'AlbumID',
+        'desc' => 'A valid SmugMug AlbumID.',
+        'type' => 'textfield',
+        'options' => '',
+        'value' => '',
+    ),
+    array(
+        'name' => 'AlbumKey',
+        'desc' => 'A valid SmugMug AlbumKey.',
         'type' => 'textfield',
         'options' => '',
         'value' => '',
     ),
 );
-
 return $properties;
