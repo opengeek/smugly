@@ -1,6 +1,5 @@
---------------------
-Smugly
---------------------
+# Smugly
+
 Since: April 8th, 2010
 Author: Jason Coward <jason@opengeek.com>
 
