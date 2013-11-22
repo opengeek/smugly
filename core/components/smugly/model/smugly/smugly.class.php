@@ -39,7 +39,7 @@ class Smugly {
                 ,'assets_url' => $assetsUrl
 
                 ,'debug' => false
-                
+
                 ,'cache_request' => false
                 ,'cache_expires' => 86400
                 ,'cache_key' => $this->namespace
@@ -56,7 +56,7 @@ class Smugly {
         if ($this->getOption('debug')) {
             $this->startTime = $this->modx->getMicroTime();
         }
-        
+
         $this->login();
     }
 
@@ -82,7 +82,7 @@ class Smugly {
         }
         return $option;
     }
-    
+
     public function getAlbumInfo(array $parameters) {
         $reqParams = array(
             'method' => 'smugmug.albums.getInfo'
@@ -99,7 +99,7 @@ class Smugly {
         }
         return $album;
     }
-    
+
     public function getAlbums(array $parameters) {
         $reqParams = array(
             'method' => 'smugmug.albums.get'
@@ -115,7 +115,7 @@ class Smugly {
         }
         return $albums;
     }
-    
+
     public function getImages(array $parameters) {
         $reqParams = array(
             'method' => 'smugmug.images.get'
@@ -128,12 +128,12 @@ class Smugly {
         if ($this->getOption('SitePassword', $parameters)) $reqParams['SitePassword'] = $this->getOption('SitePassword', $parameters);
         $response = $this->request($reqParams);
         $images = array();
-        if (isset($response['stat']) && $response['stat'] == 'ok' && isset($response['Images'])) {
-            $images = $response['Images'];
+        if (isset($response['stat']) && $response['stat'] == 'ok' && isset($response['Album']['Images'])) {
+            $images = $response['Album']['Images'];
         }
         return $images;
     }
-    
+
     public function getImageInfo(array $parameters) {
         $reqParams = array(
             'method' => 'smugmug.images.getInfo'
@@ -150,7 +150,7 @@ class Smugly {
         }
         return $image;
     }
-    
+
     public function login(array $parameters = array()) {
         $session_id = '';
         $type = $this->getOption('login', $parameters, 'anonymously');
@@ -225,7 +225,7 @@ class Smugly {
         }
         return $this->cache;
     }
-    
+
     protected function _call($url) {
         $content = '';
         if (function_exists('curl_init')) {
