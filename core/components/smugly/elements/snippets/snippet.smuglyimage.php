@@ -35,6 +35,10 @@ if (!empty($ImageID) && !empty($ImageKey)) {
             ,'ImageKey' => $ImageKey
         )
     ));
+    if (is_array($image) && isset($image['MediumURL']) && !empty($CustomSize)) {
+        $customURL = str_replace(array('/M/', '-M.jpg'), array("/{$CustomSize}!/", "-{$CustomSize}!.jpg"), $image['MediumURL']);
+        $image['CustomURL'] = $customURL;
+    }
 } elseif ($modx->smugly->getOption('debug', $scriptProperties, false)) {
     $modx->log(modX::LOG_LEVEL_ERROR, "An empty ImageID or ImageKey was provided.", 'HTML', 'SmuglyImage', __FILE__, __LINE__);
 }
