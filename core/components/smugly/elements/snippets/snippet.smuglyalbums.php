@@ -28,6 +28,7 @@ if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_
 $outputDelimiter = $modx->smugly->getOption('outputDelimiter', $scriptProperties, "\n");
 $filter = isset($filter) ? $modx->fromJSON($filter) : array();
 $sortby = isset($sortby) ? $sortby : '';
+$sortdir = isset($sortby) ? $sortdir : 'ASC';
 $limit = isset($limit) ? (integer) $limit : 20;
 $offset = isset($offset) ? (integer) $offset : 0;
 $totalVar = !empty($totalVar) ? $totalVar : 'total';
@@ -50,9 +51,9 @@ if (!empty($filter)) {
 }
 
 if (!empty($sortby) && isset($albums[0][$sortby])) {
-    usort($albums, function($a, $b) use ($sortby) {
+    usort($albums, function($a, $b) use ($sortby, $sortdir) {
         if ($a[$sortby] == $b[$sortby]) return 0;
-        return ($a[$sortby] < $b[$sortby]) ? -1 : 1;
+        return (strtoupper($sortdir) === 'DESC' ? $a[$sortby] > $b[$sortby] : $a[$sortby] < $b[$sortby]) ? -1 : 1;
     });
 }
 

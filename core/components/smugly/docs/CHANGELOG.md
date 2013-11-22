@@ -1,5 +1,6 @@
 # Changelog for Smugly.
 
+ * Add sortdir property to SmuglyAlbums Snippet
  * Fix Smugly::getImages() response
 
 ## Smugly 1.0.0-beta (July 19, 2011)
