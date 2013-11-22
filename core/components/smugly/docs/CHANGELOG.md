@@ -1,5 +1,6 @@
 # Changelog for Smugly.
 
+ * Ignore filter property if empty in SmuglyImages Snippet
  * Add sortdir property to SmuglyAlbums Snippet
  * Fix Smugly::getImages() response
 

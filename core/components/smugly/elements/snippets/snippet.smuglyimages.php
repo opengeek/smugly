@@ -28,7 +28,7 @@ if (!$modx->getService('smugly', 'smugly.Smugly', $modx->getOption('smugly.core_
 $outputDelimiter = $modx->smugly->getOption('outputDelimiter', $scriptProperties, "\n");
 $AlbumID = $modx->smugly->getOption('AlbumID', $_REQUEST, $modx->smugly->getOption('AlbumID', $scriptProperties));
 $AlbumKey = $modx->smugly->getOption('AlbumKey', $_REQUEST, $modx->smugly->getOption('AlbumKey', $scriptProperties));
-$filter = isset($filter) ? $modx->fromJSON($filter) : array();
+$filter = isset($filter) && !empty($filter) ? $modx->fromJSON($filter) : array();
 $sortby = isset($sortby) ? $sortby : '';
 $limit = isset($limit) ? (integer) $limit : 9;
 $offset = isset($offset) ? (integer) $offset : 0;
